@@ -9,7 +9,9 @@ RUN set -x && \
     mv phpbrew /usr/local/bin/phpbrew && \
     phpbrew init && \
     echo 'source ~/.phpbrew/bashrc' >> ~/.bashrc && \
-    source ~/.bashrc && \
+    rm /bin/sh && \
+    ln -s /bin/bash /bin/sh && \
+    /bin/bash -c "source ~/.bashrc" && \
     phpbrew self-update && \
     phpbrew update && \
     phpbrew known --update && \
