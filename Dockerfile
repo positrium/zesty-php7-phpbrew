@@ -1,19 +1,7 @@
-FROM ubuntu:zesty
+FROM imasami/zesty-php7-phpbrew:latest
 
-RUN set -x && \
-    apt-get update && \
-    apt-get install -y php curl autoconf automake build-essential libxml2-dev libssl-dev openssl libbz2-dev libmcrypt-dev libreadline-dev && \
-    apt-get install -y postgresql-server-dev-all libxslt1-dev && \
-    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew && \
-    chmod +x phpbrew && \
-    mv phpbrew /usr/local/bin/phpbrew && \
-    phpbrew init && \
-    echo 'source ~/.phpbrew/bashrc' >> ~/.bashrc && \
-    rm /bin/sh && \
-    ln -s /bin/bash /bin/sh && \
-    /bin/bash -c "source ~/.bashrc" && \
-    phpbrew self-update && \
-    phpbrew update && \
-    phpbrew known --update && \
-    phpbrew known --old
+RUN phpbrew switch php-7.1.6 && \
+    phpbrew install php-7.1.6 +default +pdo +mysql +pgsql && \
+    phpbrew switch php-7.1.6 && \
+    php -v
 
