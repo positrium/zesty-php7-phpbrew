@@ -1,3 +1,5 @@
+# docker build -t imasami/zesty-php7-phpbrew:latest .
+
 FROM ubuntu:zesty
 
 RUN set -x && \
