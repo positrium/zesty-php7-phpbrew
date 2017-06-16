@@ -1,7 +1,10 @@
+# docker build -t imasami/zesty-php7-phpbrew:7.1.6 .
+
 FROM imasami/zesty-php7-phpbrew:latest
 
-RUN phpbrew switch php-7.1.6 && \
+RUN set -x && \
     phpbrew install php-7.1.6 +default +pdo +mysql +pgsql && \
-    phpbrew switch php-7.1.6 && \
+    source ~/.phpbrew/bashrc && \
+    phpbrew switch 7.1.6 && \
     php -v
 
