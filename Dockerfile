@@ -4,6 +4,7 @@ FROM imasami/zesty-php7-phpbrew:latest
 
 RUN set -x && \
     phpbrew install php-5.4.45 +default +pdo +mysql +pgsql && \
+    source ~/.phpbrew/bashrc && \
     phpbrew switch 5.4.45 && \
     php -v
 
